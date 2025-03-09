@@ -7,12 +7,20 @@
 <script>
 import AppFooter from "./components/Footer.vue";
 import AppHeader from "./components/Header.vue";
+import store from "./scripts/store";
 
 export default {
   name: "App",
   components: {
     AppHeader,
     AppFooter,
+  },
+  setup() {
+    const id = sessionStorage.getItem("id");
+
+    if (id) {
+      store.commit("setAccount", id);
+    }
   },
 };
 </script>

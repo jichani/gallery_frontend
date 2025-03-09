@@ -18,7 +18,7 @@ import axios from "axios";
 import { reactive } from "vue";
 
 export default {
-  name: "AppHome",
+  name: "Home",
   components: { Card },
   setup() {
     const state = reactive({
