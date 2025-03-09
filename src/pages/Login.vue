@@ -61,6 +61,7 @@ export default {
         .post("/api/account/login", state.form)
         .then((res) => {
           store.commit("setAccount", res.data);
+          console.log(res.data);
           sessionStorage.setItem("id", res.data);
           router.push({ path: "/" });
           window.alert("로그인하였습니다.");
