@@ -5,9 +5,12 @@
 </template>
 
 <script>
+import axios from "axios";
 import AppFooter from "./components/Footer.vue";
 import AppHeader from "./components/Header.vue";
 import store from "./scripts/store";
+import { useRoute } from "vue-router";
+import { watch } from "vue";
 
 export default {
   name: "App",
@@ -16,11 +19,19 @@ export default {
     AppFooter,
   },
   setup() {
-    const id = sessionStorage.getItem("id");
+    const check = () => {
+      axios.get("/api/account/check").then(({ data }) => {
+        console.log(data);
 
-    if (id) {
-      store.commit("setAccount", id);
-    }
+        store.commit("setAccount", data || 0);
+      });
+    };
+
+    const route = useRoute();
+
+    watch(route, () => {
+      check();
+    });
   },
 };
 </script>
